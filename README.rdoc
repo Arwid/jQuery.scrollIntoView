@@ -1,0 +1,33 @@
+= jQuery.scrollIntoView
+
+author:: Arwid Bancewicz http://arwid.ca
+version:: 0.1
+updated:: 8 May 2011
+
+Similar to the default browser scrollIntoView, this jQuery plugin scrolls an element into view to the top or bottom of its container but not if it's already visible.
+
+= Usage
+An animated scroll:
+  $("#some_element").scrollIntoView();
+
+No animation:
+  $("#some_element").scrollIntoView(false);
+  
+Configure the animation (same options as in jQuery animate()):
+  $("#some_element").scrollIntoView(250, "easeOutExpo", function() { alert("done scroll!") });
+
+  $("#some_element").scrollIntoView({
+    duration: true,
+    easing:'easeOutExpo',
+    complete: $.noop(),
+    step: $.noop(),
+    queue: false,
+    specialEasing: null
+  });
+
+* Refer to http://api.jquery.com/animate/ for a description of the options.
+* By default the animation easing will be 'easeOutExpo' if jQuery UI Effects is included before this file. Otherwise, it'll use jQuery's default 'swing' easing which isn't great. So make sure to download Effects Core from http://jqueryui.com/download and include it before this file for a better animation.
+
+= License
+
+jQuery.scrollIntoView is covered by the MIT License.
