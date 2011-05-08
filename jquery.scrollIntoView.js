@@ -56,10 +56,7 @@
         });
 
         function animateScroll(el, scrollTo) {
-            el.stop().animate({
-                scrollTop: scrollTo
-            },
-            opts);
+            el.stop().animate({ scrollTop: scrollTo }, opts);
         }
         return this;
     };
@@ -73,6 +70,25 @@
         complete: $.noop(),
         step: null,
         specialEasing: null
+    };
+
+    $.fn.isOutOfView = function(completely) {
+				// completely? whether element is out of view completely
+				
+        var outOfView = true;
+        this.each(function() {
+            var pEl = this.parentNode;
+            var pY = pEl.scrollTop;
+            var pH = pEl.clientHeight;
+            var elY = this.offsetTop;
+            var elH = this.offsetHeight;
+            if (completely ? (elY) > (pY + pH) : (elY + elH) > (pY + pH)) {}
+            else if (completely ? (elY + elH) < pY: elY < pY) {}
+            else {
+                outOfView = false;
+            }
+        });
+        return outOfView;
     };
 
 })(jQuery);
