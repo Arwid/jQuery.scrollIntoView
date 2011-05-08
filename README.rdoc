@@ -28,6 +28,14 @@ Configure the animation (same options as in jQuery animate()):
 * Refer to http://api.jquery.com/animate/ for a description of the options.
 * By default the animation easing will be 'easeOutExpo' if jQuery UI Effects is included before this file. Otherwise, it'll use jQuery's default 'swing' easing which isn't great. So make sure to download Effects Core from http://jqueryui.com/download and include it before this file for a better animation.
 
+= Also Included
+
+Also included is a utility method isOutOfView that works for multiple elements:
+  $(".some_elements").isOutOfView()
+  
+Or for completely out of view:
+  $(".some_elements").isOutOfView(true)
+
 = License
 
 jQuery.scrollIntoView is covered by the MIT License.
