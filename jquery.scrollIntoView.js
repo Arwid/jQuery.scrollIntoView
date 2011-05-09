@@ -7,7 +7,7 @@
  * Licensed under the MIT license
  * http://www.opensource.org/licenses/mit-license.php
  * 
- * @date 8 May 2011
+ * @date 9 May 2011
  * @author Arwid Bancewicz http://arwid.ca
  * @version 0.2
  */
