@@ -31,8 +31,8 @@
 
         // get enclosing offsets
         var elY = Infinity, elH = 0;
-				if (this.size()==1)((elY=this.get(0).offsetTop)==null||(elH=elY+this.get(0).offsetHeight));
-				else this.each(function(n){(n.offsetTop<elY?elY=n.offsetTop:n.offsetTop+n.offsetHeight>elH?elH=n.offsetTop+n.offsetHeight:null);});
+        if (this.size()==1)((elY=this.get(0).offsetTop)==null||(elH=elY+this.get(0).offsetHeight));
+        else this.each(function(n){(n.offsetTop<elY?elY=n.offsetTop:n.offsetTop+n.offsetHeight>elH?elH=n.offsetTop+n.offsetHeight:null);});
         elH -= elY;
 
         // start from the common ancester
@@ -67,7 +67,7 @@
         duration: null,
         easing: $.easing && $.easing.easeOutExpo ? 'easeOutExpo': null,
         // Note: easeOutExpo requires jquery.effects.core.js
-        // 			 otherwise jQuery will default to use 'swing'
+        //       otherwise jQuery will default to use 'swing'
         complete: $.noop(),
         step: null,
         specialEasing: null
