@@ -38,6 +38,8 @@ Also included is a utility method isOutOfView that works for multiple elements:
 Or for completely out of view:
   $(".some_elements").isOutOfView(true)
 
+Also included is a utility called commonAncestor which returns the common ancestor of elements:
+  $(".some_elements").commonAncestor()
 = License
 
 jQuery.scrollIntoView is covered by the MIT License.
