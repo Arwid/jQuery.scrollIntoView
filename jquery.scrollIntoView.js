@@ -73,6 +73,9 @@
         specialEasing: null
     };
 
+    /*
+     Returns whether the elements are in view
+    */
     $.fn.isOutOfView = function(completely) {
         // completely? whether element is out of view completely
         var outOfView = true;
@@ -85,6 +88,11 @@
         return outOfView;
     };
 
+    /*
+     Returns the common ancestor of the elements.
+     It was taken from http://stackoverflow.com/questions/3217147/jquery-first-parent-containing-all-children
+     It has received minimal testing.
+    */
     $.fn.commonAncestor = function() {
         var parents = [];
         var minlen = Infinity;
