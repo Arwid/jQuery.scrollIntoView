@@ -24,6 +24,8 @@ Configure the animation (same options as in jQuery animate()):
     queue: false,
     specialEasing: null
   });
+Same for multiple elements:
+  $(".some_elements").scrollIntoView();
 
 * Refer to http://api.jquery.com/animate/ for a description of the options.
 * By default the animation easing will be 'easeOutExpo' if jQuery UI Effects is included before this file. Otherwise, it'll use jQuery's default 'swing' easing which isn't great. So make sure to download Effects Core from http://jqueryui.com/download and include it before this file for a better animation.

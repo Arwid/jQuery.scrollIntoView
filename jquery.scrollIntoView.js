@@ -9,7 +9,7 @@
  * 
  * @date 8 May 2011
  * @author Arwid Bancewicz http://arwid.ca
- * @version 0.1
+ * @version 0.2
  */
  (function($) {
     $.fn.scrollIntoView = function(duration, easing, complete) {
@@ -24,39 +24,40 @@
         if ($.type(duration) == "object") {
             $.extend(opts, duration);
         } else if ($.type(duration) == "number") {
-            $.extend(opts, {
-                duration: duration,
-                easing: easing,
-                complete: complete
-            });
+            $.extend(opts, { duration: duration, easing: easing, complete: complete });
         } else if (duration == false) {
             opts.smooth = false;
         }
 
-        // should only be used for one element
-        if (this.size() != 1) {
-            return this;
+        // get enclosing offsets
+        var elY = Infinity, elH = 0;
+				if (this.size()==1)((elY=this.get(0).offsetTop)==null||(elH=elY+this.get(0).offsetHeight));
+				else this.each(function(n){(n.offsetTop<elY?elY=n.offsetTop:n.offsetTop+n.offsetHeight>elH?elH=n.offsetTop+n.offsetHeight:null);});
+        elH -= elY;
+
+        // start from the common ancester
+        var pEl = this.commonAncestor().get(0);
+
+        // go up parents until we find one that scrolls
+        while (pEl) {
+            var pY = pEl.scrollTop, pH = pEl.clientHeight;
+
+            if (
+            // it wiggles?
+            (pEl.scrollTop != ((pEl.scrollTop += 1) == null || pEl.scrollTop) && (pEl.scrollTop -= 1) != null) ||
+            (pEl.scrollTop != ((pEl.scrollTop -= 1) == null || pEl.scrollTop) && (pEl.scrollTop += 1) != null)) {
+                if (elY < pY) scrollTo(pEl, elY); // scroll up
+                else if ((elY + elH) > (pY + pH)) scrollTo(pEl, elY + elH - pH); // scroll down
+                return;
+            }
+
+            // try next parent
+            pEl = pEl.parentNode;
         }
 
-        this.each(function() {
-            var pEl = this.parentNode;
-            var pY = pEl.scrollTop;
-            var pH = pEl.clientHeight;
-            var elY = this.offsetTop;
-            var elH = this.offsetHeight;
-            if ((elY + elH) > (pY + pH)) {
-                // scroll down
-                if (opts.smooth) animateScroll($(pEl), elY + elH - pH);
-                else pEl.scrollTop = elY + elH - pH;
-            } else if (elY < pY) {
-                // scroll up
-                if (opts.smooth) animateScroll($(pEl), elY);
-                else pEl.scrollTop = elY;
-            }
-        });
-
-        function animateScroll(el, scrollTo) {
-            el.stop().animate({ scrollTop: scrollTo }, opts);
+        function scrollTo(el, scrollTo) {
+            if (opts.smooth) $(el).stop().animate({ scrollTop: scrollTo }, opts);
+            else el.scrollTop = elY;
         }
         return this;
     };
@@ -73,22 +74,43 @@
     };
 
     $.fn.isOutOfView = function(completely) {
-				// completely? whether element is out of view completely
-				
+        // completely? whether element is out of view completely
         var outOfView = true;
         this.each(function() {
-            var pEl = this.parentNode;
-            var pY = pEl.scrollTop;
-            var pH = pEl.clientHeight;
-            var elY = this.offsetTop;
-            var elH = this.offsetHeight;
+            var pEl = this.parentNode, pY = pEl.scrollTop, pH = pEl.clientHeight, elY = this.offsetTop, elH = this.offsetHeight;
             if (completely ? (elY) > (pY + pH) : (elY + elH) > (pY + pH)) {}
             else if (completely ? (elY + elH) < pY: elY < pY) {}
-            else {
-                outOfView = false;
-            }
+            else outOfView = false;
         });
         return outOfView;
     };
+
+    $.fn.commonAncestor = function() {
+        var parents = [];
+        var minlen = Infinity;
+
+        $(this).each(function() {
+            var curparents = $(this).parents();
+            parents.push(curparents);
+            minlen = Math.min(minlen, curparents.length);
+        });
+
+        for (var i in parents) {
+            parents[i] = parents[i].slice(parents[i].length - minlen);
+        }
+
+        // Iterate until equality is found
+        for (var i in parents[0]) {
+            var equal = true;
+            for (var j in parents) {
+                if (parents[j][i] != parents[0][i]) {
+                    equal = false;
+                    break;
+                }
+            }
+            if (equal) return $(parents[0][i]);
+        }
+        return $([]);
+    }
 
 })(jQuery);
