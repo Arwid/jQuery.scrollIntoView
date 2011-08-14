@@ -38,10 +38,13 @@
         // start from the common ancester
         var pEl = this.commonAncestor().get(0);
 
+        var wH = $(window).height();
+        
         // go up parents until we find one that scrolls
         while (pEl) {
             var pY = pEl.scrollTop, pH = pEl.clientHeight;
-
+            if (pH > wH) pH = wH;
+            
             if (
             // it wiggles?
             (pEl.scrollTop != ((pEl.scrollTop += 1) == null || pEl.scrollTop) && (pEl.scrollTop -= 1) != null) ||
