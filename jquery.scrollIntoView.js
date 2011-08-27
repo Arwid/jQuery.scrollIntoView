@@ -45,6 +45,9 @@
             var pY = pEl.scrollTop, pH = pEl.clientHeight;
             if (pH > wH) pH = wH;
             
+            // case: if body's elements are all absolutely/fixed positioned, use window height
+            if (pH == 0 && pEl.tagName == "BODY") pH = wH;
+            
             if (
             // it wiggles?
             (pEl.scrollTop != ((pEl.scrollTop += 1) == null || pEl.scrollTop) && (pEl.scrollTop -= 1) != null) ||
