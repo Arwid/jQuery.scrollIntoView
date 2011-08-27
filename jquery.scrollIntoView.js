@@ -52,7 +52,7 @@
             // it wiggles?
             (pEl.scrollTop != ((pEl.scrollTop += 1) == null || pEl.scrollTop) && (pEl.scrollTop -= 1) != null) ||
             (pEl.scrollTop != ((pEl.scrollTop -= 1) == null || pEl.scrollTop) && (pEl.scrollTop += 1) != null)) {
-                if (elY < pY) scrollTo(pEl, elY); // scroll up
+                if (elY <= pY) scrollTo(pEl, elY); // scroll up
                 else if ((elY + elH) > (pY + pH)) scrollTo(pEl, elY + elH - pH); // scroll down
                 return;
             }
