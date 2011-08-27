@@ -63,7 +63,7 @@
 
         function scrollTo(el, scrollTo) {
             if (opts.smooth) $(el).stop().animate({ scrollTop: scrollTo }, opts);
-            else el.scrollTop = elY;
+            else el.scrollTop = scrollTo;
         }
         return this;
     };
