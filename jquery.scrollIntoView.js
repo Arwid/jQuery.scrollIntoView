@@ -54,6 +54,7 @@
             (pEl.scrollTop != ((pEl.scrollTop -= 1) == null || pEl.scrollTop) && (pEl.scrollTop += 1) != null)) {
                 if (elY <= pY) scrollTo(pEl, elY); // scroll up
                 else if ((elY + elH) > (pY + pH)) scrollTo(pEl, elY + elH - pH); // scroll down
+                else scrollTo(pEl, undefined) // no scroll
                 return;
             }
 
@@ -62,8 +63,14 @@
         }
 
         function scrollTo(el, scrollTo) {
-            if (opts.smooth) $(el).stop().animate({ scrollTop: scrollTo }, opts);
-            else el.scrollTop = scrollTo;
+            if (scrollTo === undefined) {
+                opts.complete();
+            } else if (opts.smooth) {
+                $(el).stop().animate({ scrollTop: scrollTo }, opts);
+            } else {
+                el.scrollTop = scrollTo;
+                opts.complete();
+            }
         }
         return this;
     };
