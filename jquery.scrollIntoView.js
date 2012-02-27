@@ -114,7 +114,7 @@
         }
 
         // Iterate until equality is found
-        for (var i in parents[0]) {
+        for (var i = 0; i < parents[0].length; i++) {
             var equal = true;
             for (var j in parents) {
                 if (parents[j][i] != parents[0][i]) {
