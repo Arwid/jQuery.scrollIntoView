@@ -64,12 +64,12 @@
 
         function scrollTo(el, scrollTo) {
             if (scrollTo === undefined) {
-                opts.complete();
+                if ($.isFunction(obj.complete)) opts.complete();
             } else if (opts.smooth) {
                 $(el).stop().animate({ scrollTop: scrollTo }, opts);
             } else {
                 el.scrollTop = scrollTo;
-                opts.complete();
+                if ($.isFunction(obj.complete)) opts.complete();
             }
         }
         return this;
