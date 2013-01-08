@@ -1,8 +1,8 @@
 = jQuery.scrollIntoView
 
 author:: Arwid Bancewicz http://arwid.ca
-version:: 0.2
-updated:: 9 May 2011
+version:: 0.3
+updated:: 8 Jan 2013
 
 Similar to the default browser scrollIntoView, this jQuery plugin scrolls an element into view to the top or bottom of its container but not if it's already visible. The demo page is here http://arwid.github.com/jQuery.scrollIntoView/.
 
