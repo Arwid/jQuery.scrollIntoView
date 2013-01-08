@@ -69,6 +69,8 @@
       $(function(){
 
          $('a[href^="#"]').click(function(e) {
+             e.preventDefault();
+             
              var href = $(this).attr('href');
              
              // scroll into view
@@ -77,8 +79,6 @@
              // some sort of highlight
              $('section>div:not("'+href+'")').animate({opacity:0.3},10);
              $(href).animate({opacity:1},100);
-
-             e.preventDefault();
          });
 
       });
