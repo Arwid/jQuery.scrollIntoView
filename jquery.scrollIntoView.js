@@ -7,9 +7,9 @@
  * Licensed under the MIT license
  * http://www.opensource.org/licenses/mit-license.php
  * 
- * @date 9 May 2011
+ * @date 8 Jan 2013
  * @author Arwid Bancewicz http://arwid.ca
- * @version 0.2
+ * @version 0.3
  */
  (function($) {
     $.fn.scrollIntoView = function(duration, easing, complete) {
@@ -83,7 +83,7 @@
         //       otherwise jQuery will default to use 'swing'
         complete: $.noop(),
         step: null,
-        specialEasing: null
+        specialEasing: {} // cannot be null in jQuery 1.8.3
     };
 
     /*
