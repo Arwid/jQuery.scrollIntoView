@@ -116,7 +116,7 @@
             minlen = Math.min(minlen, curparents.length);
         });
 
-        for (var i=0; i<parents.length; i++)
+        for (var i = 0; i < parents.length; i++) {
             parents[i] = parents[i].slice(parents[i].length - minlen);
         }
 
