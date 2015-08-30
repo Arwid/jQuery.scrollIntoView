@@ -1,0 +1,11 @@
+{
+  "name": "jQuery.scrollIntoView",
+  "version": "0.3.0",
+  "authors": [
+    "Arwid Bancewicz <arwid@arwid.ca"
+  ],
+  "main": "jquery.scrollIntoView.min.js",
+  "homepage": "https://github.com/Arwid/jQuery.scrollIntoView",
+  "description": "jQuery plugin to smoothly scroll elements into view.",
+  "license": "MIT"
+}
